@@ -3,132 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Podcast_en - English Learning Backup</title>
-    
-    <!-- 麥克風 Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn-icons-png.flaticon.com/512/3063/3063176.png">
-    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/3063/3063176.png">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>ideaHub | 數位花園</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400&family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
     
     <style>
+        /* 變數設定 */
         :root {
-            --bg-color: #f8f9fa;
-            --text-color: #212529;
-            --card-bg: #ffffff;
-            --accent: #3498db;
+            --bg-color: #FAF9F6;      /* 優雅米色 */
+            --text-color: #292929;    /* 深灰色文字 */
+            --primary-green: #2D5A27; /* 森林綠 */
+            --accent-green: #E8F3E8;  /* 極淺綠 (區塊背景) */
+            --secondary-text: #6B6B6B;
+            --max-width: 700px;
         }
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-color: #121212;
-                --text-color: #e0e0e0;
-                --card-bg: #1e1e1e;
-                --accent: #5dade2;
-            }
-        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: var(--bg-color);
+            background-color: var(--bg-color);
             color: var(--text-color);
-            margin: 0;
-            padding: 60px 20px 40px;
-            line-height: 1.7;
+            font-family: 'Noto Sans TC', sans-serif;
+            line-height: 1.8;
+            padding: 0 20px;
         }
-        .container { max-width: 960px; margin: 0 auto; }
-        header { text-align: center; margin-bottom: 60px; }
-        .logo { font-size: 4rem; margin-bottom: 16px; }
-        h1 { 
-            font-size: 2.6rem; 
-            margin: 0 0 12px 0; 
-            color: var(--accent); 
+
+        /* 導覽列 */
+        nav {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 40px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .subtitle { 
-            font-size: 1.2rem; 
-            opacity: 0.9; 
+
+        .logo {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* 文章容器 */
+        main {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .post-header {
             margin-bottom: 40px;
         }
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 24px;
+
+        h1 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 15px;
         }
-        .card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 32px 28px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+
+        .meta {
+            color: var(--secondary-text);
+            font-size: 0.9rem;
+            display: flex;
+            gap: 15px;
         }
-        .card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+
+        .post-content {
+            font-size: 1.15rem;
+            margin-bottom: 60px;
+            text-align: justify;
         }
-        .card i {
-            font-size: 3rem;
-            color: var(--accent);
-            margin-bottom: 20px;
-        }
-        .card h3 {
-            margin: 0 0 14px 0;
-            font-size: 1.45rem;
-        }
-        .btn {
+
+        .post-content p { margin-bottom: 25px; }
+
+        /* 訪客計數樣式 */
+        .visitor-stats {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: var(--primary-green);
+            background: var(--accent-green);
+            padding: 5px 12px;
+            border-radius: 20px;
             display: inline-block;
-            background: var(--accent);
-            color: white;
-            padding: 12px 26px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 500;
-            margin-top: 15px;
         }
-        .btn:hover {
-            background: #2980b9;
+
+        /* 留言區容器 */
+        #comment-section {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid #e0e0e0;
         }
+
         footer {
             text-align: center;
-            margin-top: 80px;
-            opacity: 0.75;
-            font-size: 0.95rem;
+            padding: 60px 0;
+            color: var(--secondary-text);
+            font-size: 0.8rem;
+        }
+
+        /* 響應式微調 */
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            nav { padding: 20px 0; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">🎙️</div>
-            <h1>Podcast_en</h1>
-            <p class="subtitle">English Learning Backup Materials</p>
-            <p>這是我的英文學習 Podcast 備份資料庫，包含音檔與完整文字稿。</p>
-        </header>
 
-        <div class="cards">
-            <div class="card">
-                <i class="fas fa-key"></i>
-                <h3>Key_Confident_en</h3>
-                <p>關鍵表達與實用句型</p>
-                <a href="Key_Confident_en/" class="btn" target="_blank">前往瀏覽</a>
-            </div>
+    <nav>
+        <a href="#" class="logo">ideaHub</a>
+        <div class="meta">
+            <a href="https://github.com/你的帳號" style="color: inherit; text-decoration: none;">GitHub</a>
+        </div>
+    </nav>
 
-            <div class="card">
-                <i class="fas fa-file-alt"></i>
-                <h3>Transcripts_Confident_en</h3>
-                <p>完整逐字稿與學習筆記</p>
-                <a href="Transcripts_Confident_en/" class="btn" target="_blank">前往瀏覽</a>
-            </div>
+    <main>
+        <article>
+            <header class="post-header">
+                <h1>歡迎來到我的數位花園：ideaHub 的誕生</h1>
+                <div class="meta">
+                    <span>2026年4月6日</span>
+                    <span>•</span>
+                    <span>5 分鐘閱讀</span>
+                    <span id="busuanzi_container_page_pv" style="display:none;">
+                        • 閱讀量 <span id="busuanzi_value_page_pv"></span> 次
+                    </span>
+                </div>
+            </header>
 
-            <div class="card">
-                <i class="fas fa-music"></i>
-                <h3>Audio Files</h3>
-                <p>所有 Podcast 音檔</p>
-                <a href="audio/" class="btn" target="_blank">前往聆聽</a>
-            </div>
+            <section class="post-content">
+                <p>這是我的第一篇部落格文章。在這裡，我打算記錄關於技術、品牌管理以及個人成長的實驗點滴。</p>
+                <p>之所以選擇<strong>米色與淡綠色</strong>，是希望在這個資訊爆炸的時代，提供一個像紙質書本一樣安靜的閱讀空間。</p>
+                </section>
+        </article>
+
+        <div class="visitor-stats">
+            本站總訪問量：<span id="busuanzi_value_site_pv"></span> 次
         </div>
 
-        <footer>
-            <p>最後更新：2026 年 4 月</p>
-            <p>English Learning Resources • Powered by GitHub Pages</p>
-        </footer>
-    </div>
+        <section id="comment-section">
+            <h3>交流與討論</h3>
+            <br>
+            <p style="font-size: 0.9rem; color: var(--secondary-text);">（留言系統載入中... 請參考下方說明設定）</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ideaHub. Powered by GitHub Pages.</p>
+    </footer>
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </body>
 </html>
