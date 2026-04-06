@@ -1,0 +1,19 @@
+baseURL = 'https://ah431.github.io/ideaHub/'
+languageCode = 'zh-tw'
+title = 'ideaHub'
+theme = 'PaperMod' # 我們先預設使用最受歡迎的極簡主題
+
+[params]
+    defaultTheme = "light"
+    # 這裡可以自定義 CSS 來達成你的米色調
+    assets = { disableHLJS = true }
+    
+[menu]
+  [[menu.main]]
+    name = "首頁"
+    url = "/"
+    weight = 10
+  [[menu.main]]
+    name = "關於"
+    url = "/about"
+    weight = 20
