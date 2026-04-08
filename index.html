@@ -6,157 +6,12 @@
     <title>ideaHub | 數位花園</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400&family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* 變數設定 */
-        :root {
-            --bg-color: #FAF9F6;      /* 優雅米色 */
-            --text-color: #292929;    /* 深灰色文字 */
-            --primary-green: #2D5A27; /* 森林綠 */
-            --accent-green: #E8F3E8;  /* 極淺綠 (區塊背景) */
-            --secondary-text: #6B6B6B;
-            --max-width: 700px;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Noto Sans TC', sans-serif;
-            line-height: 1.8;
-            padding: 0 20px;
-        }
-
-        /* 導覽列 */
-        nav {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 40px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Noto Serif TC', serif;
-            font-size: 1.5rem;
-            color: var(--primary-green);
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        /* 文章容器 */
-        main {
-            max-width: var(--max-width);
-            margin: 0 auto;
-        }
-
-        .post-header {
-            margin-bottom: 40px;
-        }
-
-        h1 {
-            font-family: 'Noto Serif TC', serif;
-            font-size: 2.5rem;
-            line-height: 1.2;
-            margin-bottom: 15px;
-        }
-
-        .meta {
-            color: var(--secondary-text);
-            font-size: 0.9rem;
-            display: flex;
-            gap: 15px;
-        }
-
-        .post-content {
-            font-size: 1.15rem;
-            margin-bottom: 60px;
-            text-align: justify;
-        }
-
-        .post-content p { margin-bottom: 25px; }
-
-        /* 近期文章 */
-        .recent-posts {
-            margin-top: 60px;
-            padding-top: 40px;
-            border-top: 1px solid #e0e0e0;
-        }
-
-        .recent-posts h2 {
-            font-family: 'Noto Serif TC', serif;
-            font-size: 1.2rem;
-            color: var(--primary-green);
-            margin-bottom: 20px;
-        }
-
-        .recent-posts ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .recent-posts ul li {
-            padding: 10px 0;
-            border-bottom: 1px solid #f0f0f0;
-            display: flex;
-            gap: 16px;
-            align-items: baseline;
-        }
-
-        .recent-posts ul li .post-date {
-            font-size: 0.85rem;
-            color: var(--secondary-text);
-            white-space: nowrap;
-        }
-
-        .recent-posts ul li a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 1rem;
-        }
-
-        .recent-posts ul li a:hover {
-            color: var(--primary-green);
-        }
-
-        /* 訪客計數樣式 */
-        .visitor-stats {
-            margin-top: 20px;
-            font-size: 0.85rem;
-            color: var(--primary-green);
-            background: var(--accent-green);
-            padding: 5px 12px;
-            border-radius: 20px;
-            display: inline-block;
-        }
-
-        /* 留言區容器 */
-        #comment-section {
-            margin-top: 80px;
-            padding-top: 40px;
-            border-top: 1px solid #e0e0e0;
-        }
-
-        footer {
-            text-align: center;
-            padding: 60px 0;
-            color: var(--secondary-text);
-            font-size: 0.8rem;
-        }
-
-        /* 響應式微調 */
-        @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            nav { padding: 20px 0; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <nav>
-        <a href="#" class="logo">ideaHub</a>
+        <a href="index.html" class="logo">ideaHub</a>
         <div class="meta">
             <a href="https://github.com/你的帳號" style="color: inherit; text-decoration: none;">GitHub</a>
         </div>
@@ -184,12 +39,16 @@
 
         <section class="recent-posts">
             <h2>近期文章</h2>
-            <ul>
-                <li>
-                    <span class="post-date">2026/04/07</span>
-                    <a href="post1.html">5 分鐘理解 Oracle Agile PLM（產品生命週期管理系統）</a>
-                </li>
-            </ul>
+
+            <div class="post-card">
+                <div class="post-card-meta">
+                    <span>2026/04/07</span>
+                    <span>5 分鐘閱讀</span>
+                </div>
+                <h3><a href="post1.html">5 分鐘理解 Oracle Agile PLM（產品生命週期管理系統）</a></h3>
+                <p class="post-card-excerpt">從構思到退役，PLM 是企業研發的單一真實來源。本文涵蓋六大核心模組、BOM 管理機制與導入效益。</p>
+            </div>
+
         </section>
 
         <div class="visitor-stats">

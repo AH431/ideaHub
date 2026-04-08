@@ -1,0 +1,209 @@
+/* =============================================
+   ideaHub — 全域樣式表
+   ============================================= */
+
+/* --- CSS 變數 (主題設定) --- */
+:root {
+    --bg-color: #FAF9F6;          /* 優雅米色 */
+    --text-color: #292929;        /* 深灰色文字 */
+    --primary-green: #2D5A27;     /* 森林綠 */
+    --accent-green: #E8F3E8;      /* 極淺綠 (區塊背景) */
+    --secondary-text: #6B6B6B;
+    --border-color: #e0e0e0;
+    --max-width: 700px;
+    --font-body: 'Noto Sans TC', sans-serif;
+    --font-serif: 'Noto Serif TC', serif;
+    --font-size-base: 1.1rem;
+}
+
+/* --- 基底重置 --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* --- 全域樣式 --- */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    line-height: 1.8;
+    padding: 0 20px;
+}
+
+/* --- 導覽列 --- */
+nav {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 40px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--primary-green);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* --- 主要容器 --- */
+main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+/* --- 文章標頭 --- */
+.post-header { margin-bottom: 40px; }
+
+h1 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+.meta {
+    color: var(--secondary-text);
+    font-size: 0.9rem;
+    display: flex;
+    gap: 15px;
+}
+
+/* --- 文章內容 --- */
+.post-content {
+    font-size: var(--font-size-base);
+    margin-bottom: 60px;
+    text-align: justify;
+}
+
+.post-content p { margin-bottom: 25px; }
+
+.post-content h3 {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    color: var(--primary-green);
+    margin: 40px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--accent-green);
+}
+
+.post-content ul {
+    list-style: none;
+    margin: 0 0 20px 0;
+    padding: 0;
+}
+
+.post-content ul li {
+    padding: 4px 0 4px 1.2em;
+    position: relative;
+}
+
+.post-content ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-green);
+}
+
+.post-content .keywords {
+    background: var(--accent-green);
+    border-left: 3px solid var(--primary-green);
+    padding: 8px 14px;
+    font-size: 0.9rem;
+    color: var(--secondary-text);
+    margin: 12px 0 24px;
+    border-radius: 0 6px 6px 0;
+}
+
+/* --- 近期文章 (首頁) --- */
+.recent-posts {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border-color);
+}
+
+.recent-posts h2 {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    color: var(--primary-green);
+    margin-bottom: 20px;
+}
+
+/* --- 文章卡片模板 (.post-card)
+   使用方式：
+   <div class="post-card">
+       <div class="post-card-meta">
+           <span>日期</span>
+           <span>閱讀時間</span>
+       </div>
+       <h3><a href="postN.html">文章標題</a></h3>
+       <p class="post-card-excerpt">一兩句摘要</p>
+   </div>
+   ------------------------------------------- */
+.post-card {
+    padding: 24px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.post-card:last-child { border-bottom: none; }
+
+.post-card-meta {
+    font-size: 0.82rem;
+    color: var(--secondary-text);
+    display: flex;
+    gap: 12px;
+    margin-bottom: 6px;
+}
+
+.post-card h3 {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: normal;
+    margin-bottom: 6px;
+}
+
+.post-card h3 a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.post-card h3 a:hover { color: var(--primary-green); }
+
+.post-card-excerpt {
+    font-size: 0.9rem;
+    color: var(--secondary-text);
+    line-height: 1.6;
+}
+
+/* --- 訪客計數 --- */
+.visitor-stats {
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: var(--primary-green);
+    background: var(--accent-green);
+    padding: 5px 12px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+/* --- 留言區 --- */
+#comment-section {
+    margin-top: 80px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* --- 頁尾 --- */
+footer {
+    text-align: center;
+    padding: 60px 0;
+    color: var(--secondary-text);
+    font-size: 0.8rem;
+}
+
+/* --- 響應式微調 --- */
+@media (max-width: 600px) {
+    h1 { font-size: 2rem; }
+    nav { padding: 20px 0; }
+}
