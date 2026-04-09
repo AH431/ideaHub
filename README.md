@@ -7,7 +7,7 @@ post-template.html 建立完成。
 
 複製 post-template.html → 改名為 post3.html、post4.html...
 改 ①②③④ 四個標記處
-在內文裡填入 <p> <h3> <ul>.keywords 積木
+在內文裡填入.keywords 積木
 在 index.html 加一張 .post-card
 
 (本地端先瀏覽../ideaHub/postX.html)
