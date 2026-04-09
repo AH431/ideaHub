@@ -98,10 +98,22 @@ def process_markdown_to_html_and_toc(body_md: str):
             heading["id"] = slug
 
         level = int(heading.name[1])
-        toc_items.append({"level": level, "text": text, "id": slug})
+        toc_items.append({
+            "level": level,
+            "text": text,
+            "id": slug,
+            "short": heading.get("data-toc", ""),  # 來自 {: data-toc="..."} 語法
+        })
 
     if not toc_items:
         return "", str(soup)
+
+    def auto_shorten(text: str, limit: int = 10) -> str:
+        """自動從標題推導精簡 TOC 標籤：去編號 → 去英文括號 → 取冒號前主詞"""
+        t = re.sub(r'^\d+\.\s*', '', text)          # 移除 "1. " 等數字編號
+        t = re.sub(r'\([^)]+\)', '', t)              # 移除 "(English)" 括號
+        t = t.split('：')[0].split(':')[0].strip()   # 取冒號前的主要概念
+        return t[:limit] + '…' if len(t) > limit else t
 
     # 產生巢狀 TOC HTML（與 post1.html 左側欄一致）
     toc_html = '<nav class="toc" aria-label="文章目錄">\n<h4>本文目錄</h4>\n<ul>'
@@ -113,7 +125,9 @@ def process_markdown_to_html_and_toc(body_md: str):
             toc_html += "<ul>" * (level - prev_level)
         elif level < prev_level:
             toc_html += "</ul>" * (prev_level - level)
-        toc_html += f'<li><a href="#{item["id"]}">{item["text"]}</a></li>'
+        # 優先用 {: data-toc="..."} 手動標籤，否則自動推導
+        label = item.get("short") or auto_shorten(item["text"])
+        toc_html += f'<li><a href="#{item["id"]}" title="{item["text"]}">{label}</a></li>'
         prev_level = level
 
     toc_html += "</ul>" * (prev_level - 1) + "\n</nav>"
