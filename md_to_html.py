@@ -109,11 +109,24 @@ def process_markdown_to_html_and_toc(body_md: str):
         return "", str(soup)
 
     def auto_shorten(text: str, limit: int = 10) -> str:
-        """自動從標題推導精簡 TOC 標籤：去編號 → 去英文括號 → 取冒號前主詞"""
-        t = re.sub(r'^\d+\.\s*', '', text)          # 移除 "1. " 等數字編號
-        t = re.sub(r'\([^)]+\)', '', t)              # 移除 "(English)" 括號
-        t = t.split('：')[0].split(':')[0].strip()   # 取冒號前的主要概念
-        return t[:limit] + '…' if len(t) > limit else t
+        """自動從標題推導精簡 TOC 標籤"""
+        t = re.sub(r'^\d+\.\s*', '', text)                   # 移除 "1. " 數字編號
+        t = re.sub(r'\([^)]+\)', '', t)                       # 移除半型括號 (English)
+        t = re.sub(r'（[^）]*[A-Za-z][^）]*）', '', t)          # 移除全型括號含英文
+        t = t.strip()
+
+        parts = re.split(r'[：:]', t, maxsplit=1)
+        before = parts[0].strip()
+        after = parts[1].strip() if len(parts) > 1 else ''
+
+        # 冒號前若是序號標籤（末尾為數字/中文數字，且 ≤8 字），改用冒號後的內容
+        is_label = bool(re.search(r'[一二三四五六七八九十\d]$', before)) and len(before) <= 8
+        summary = (after if (is_label and after) else before) or t
+
+        # 若摘要開頭仍為英文（如 "Oracle Agile PLM：..."），跳過找中文起點
+        summary = re.sub(r'^[A-Za-z0-9\s]+[：:\s]*', '', summary).strip() or summary
+
+        return summary[:limit] + '…' if len(summary) > limit else summary
 
     # 產生巢狀 TOC HTML（與 post1.html 左側欄一致）
     toc_html = '<nav class="toc" aria-label="文章目錄">\n<h4>本文目錄</h4>\n<ul>'
@@ -236,7 +249,24 @@ def main():
     md_text = input_path.read_text(encoding="utf-8")
 
     metadata, body_md = parse_frontmatter_and_body(md_text)
+
+    # 偵測最後一行是否為 hashtag 關鍵字（如 #WFH #RemoteWork）
+    hashtag_html = ""
+    lines = body_md.rstrip().splitlines()
+    if lines:
+        last_line = lines[-1].strip()
+        # 每個 token 都是 #英數字 格式（無空格），才視為 hashtag 行
+        tokens = last_line.split()
+        if tokens and all(re.match(r"^#[A-Za-z\u4e00-\u9fff]\w*$", t) for t in tokens):
+            body_md = "\n".join(lines[:-1]).rstrip()
+            tag_links = " ".join(
+                f'<span class="post-tag">{t}</span>' for t in tokens
+            )
+            hashtag_html = f'<p class="post-tags">{tag_links}</p>'
+
     toc_html, content_html = process_markdown_to_html_and_toc(body_md)
+    if hashtag_html:
+        content_html += "\n" + hashtag_html
 
     # === 你的完整文章模板（直接從 post1.html 客製化）===
     template_str = """<!DOCTYPE html>
@@ -277,13 +307,11 @@ def main():
                 </div>
             </header>
 
-{% if featured_image %}
             <!-- Featured Image -->
             <figure class="featured-image">
-                <img src="{{ featured_image }}" alt="{{ title }}">
-                <figcaption>{{ title }} 示意圖</figcaption>
+                <img src="{{ featured_image if featured_image else 'static/' }}" alt="{{ title }}">
+                <figcaption>{{ title }}</figcaption>
             </figure>
-{% endif %}
 
             <div class="content-layout">
 

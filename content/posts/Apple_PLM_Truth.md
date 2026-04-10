@@ -3,6 +3,8 @@ title: 為什麼Apple手機愈變愈慢？
 date: 2026 年 4 月 8 日
 author: Sunny
 description: 揭開產品生命週期管理 (PLM) 的幕後真相
+prev_url: post1.html
+next_url: post3.html
 ---
 
 ### 引言：混亂中的秩序
