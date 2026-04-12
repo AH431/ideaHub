@@ -589,3 +589,13 @@ a:focus-visible {
         max-width: 320px;
     }
 }
+
+/* 移除引言內最後一個段落的下邊距，防止空間重疊 */
+.post-content blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* 如果你希望視覺更緊湊，可以微調 blockquote 的 padding 或 margin */
+.post-content blockquote {
+    padding: 28px 32px 24px; /* 稍微減少一點點底部的內邊距 */
+}
