@@ -472,7 +472,7 @@ def main():
         <p>&copy; 2026 ideaHub • Made with ❤️ in Taipei • Powered by GitHub Pages</p>
     </footer>
 
-    <script data-goatcounter="https://GOATCOUNTER_CODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script data-goatcounter="https://ah431.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>"""
 
